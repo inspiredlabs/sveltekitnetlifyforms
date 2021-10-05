@@ -21,7 +21,11 @@ netlify>
 	<input name="gotcha" class="visually-hidden" />
 	<div class=mb4>
 		<label for=email class="f6 f5-ns ttu tracked-mega pl3">Address</label>
-		<input type=email name=email id=email class=" input-reset br0 bn mt3 pa3 w-100 bg-white-80" placeholder="your@email.com" pattern="[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" required>
+		<input type=email name=email id=email class=" input-reset br0 bn mt3 pa3 w-100 bg-white-80" placeholder="your@email.com" required>
+		<!--
+		pattern="
+			[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?
+		" -->
 	</div>
 
 	<div class=mb4>
