@@ -1,5 +1,11 @@
 ---
 
+from: https://github.com/sw-yx/sveltekitnetlifyforms
+
+---
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/cbd22974-28f2-4eea-a35c-0db3fb0095c9/deploy-status)](https://app.netlify.com/sites/agitated-hopper-c5829f/deploys)
+
 # Svelte PWA
 
 This is a Progressive Web App (PWA) template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/tretapey/svelte-pwa.
@@ -7,8 +13,10 @@ This is a Progressive Web App (PWA) template for [Svelte](https://svelte.dev) ap
 To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
 
 ```bash
-npx degit tretapey/svelte-pwa my-svelte-pwa
-cd my-svelte-pwa
+npx degit tretapey/svelte-pwa sveltekitnetlifyforms
+cd sveltekitnetlifyforms
+npm install && npm audit fix
+npm i @sveltejs/adapter-netlify # & add to: `svelte.config.js`
 ```
 
 _Note that you will need to have [Node.js](https://nodejs.org) installed._
