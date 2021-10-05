@@ -1,32 +1,24 @@
-<script>
-	export let name;
+<script context="module">
+	export const prerender = true;
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>This is a starter template for a Svelte PWA, based in the <a href="https://github.com/sveltejs/template" target="_blank">Svelte template</a></p>
-	<p>You will find the manifest.json file and the service-worker.js file in the public folder</p>
-	<p>To update the proper icons for the PWA check <i>/public/images/icons</i></p>
-</main>
+<h1>PWA/SvelteKit + Netlify Forms demo</h1>
+<p>View <a href="https://github.com/sw-yx/sveltekitnetlifyforms">https://github.com/sw-yx/sveltekitnetlifyforms</a> for source</p>
 
-<style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
-</style>
+<!-- "/src/routes/test-form.svelte" -->
+<form name="test" method="post" netlify>
+    <input type="hidden" name="form-name" value="test" />
+    <input type="text" name="bot-field" style="visibility:hidden" />
+    <p>
+        <label>Your Name: <input type="text" name="name" /></label>
+    </p>
+    <p>
+        <label>Your Email: <input type="email" name="email" /></label>
+    </p>
+    <p>
+        <label>Message: <textarea name="message" /></label>
+    </p>
+    <p>
+        <button type="submit">Send</button>
+    </p>
+</form>
