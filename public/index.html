@@ -33,6 +33,18 @@
       <div>Oops! Javascript required here! Allow it and try again!</div>
     </noscript>
 
+<form
+  style="visibility:hidden"
+  method=POST
+  name="Contact"
+  netlify-honeypot="gotcha"
+  netlify>
+  <input name="gotcha" />
+  <input type=email name="email" required />
+  <textarea name="message" required></textarea>
+  <input type=submit value=Send />
+</form>
+
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
