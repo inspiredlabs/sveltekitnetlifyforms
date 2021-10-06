@@ -3,25 +3,18 @@ import adapter from '@sveltejs/adapter-netlify';
 
 const config = {
 	kit: {
-    adapter: adapter(),
+		adapter: adapter(),
+
+		// hydrate the <div id="svelte"> element in src/app.html
+		target: '#svelte',
 		prerender: {
 			crawl: true,
-			force: true,
-			pages: [
-				'/' // - from: https://github.com/sveltejs/kit/issues/1683
-			],
-		}
-    // files: {
-    //   hooks: 'src/hooks',
-    // },
-    // hydrate the <div id="svelte"> element in src/app.html
-    target: '#svelte',
-    vite: {
-      define: {
-        //'process.env.VITE_BUILD_TIME': JSON.stringify(new Date().toISOString()),
-      },
-    },
-  }
+			enabled: true,
+			// force: true,
+			entries: ['*'],
+		},
+		ssr: true // https://crinkle.dev/writing/journey-from-gatsby-to-sveltekit-deployment#hosting-on-netlify
+	}
 };
 
 export default config;

@@ -6,54 +6,15 @@ from: https://github.com/sw-yx/sveltekitnetlifyforms
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/cbd22974-28f2-4eea-a35c-0db3fb0095c9/deploy-status)](https://app.netlify.com/sites/agitated-hopper-c5829f/deploys)
 
-# Svelte PWA 🙂
-
-This is a Progressive Web App (PWA) template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/tretapey/svelte-pwa.
-
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
+# Netlify SSR Form
 
 ```bash
-npx degit tretapey/svelte-pwa sveltekitnetlifyforms
+npm init svelte@next sveltekitnetlifyforms
 cd sveltekitnetlifyforms
-npm install && npm audit fix
-npm i @sveltejs/adapter-netlify # & add to: `svelte.config.js`
-```
-
-_Note that you will need to have [Node.js](https://nodejs.org) installed._
-
-## Get started
-
-Install the dependencies...
-
-```bash
-cd my-svelte-pwa
 npm install
+git init
+npm i @sveltejs/adapter-netlify@next # & add to: `svelte.config.js`
+npm run dev -- --open
 ```
 
-...then start [Rollup](https://rollupjs.org):
-
-```bash
-npm run dev
-```
-
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
-
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
-
-## PWA Configuration
-
-- The `service-worker.js` and `manifest.json` files are in the `public` folder.
-- You should update the icons in `/public/images/icons`
-- For an offline experience edit the `/public/offline.html` file.
-- This PWA is installable. For more information on how to use check [this repo](https://github.com/pwa-builder/pwa-install).
-  Note: If you don't want to make the app installable you can remove the script from the `index.html` file in the `public` folder.
-
-For more info, this template was made following this [tutorial](https://codelabs.developers.google.com/codelabs/your-first-pwapp)
-
-## Building and running in production mode
-
-To create an optimised version of the app:
-
-```bash
-npm run build
-```
+Navigate to [localhost:3000](http://localhost:3000).

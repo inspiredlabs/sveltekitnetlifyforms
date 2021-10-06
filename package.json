@@ -1,23 +1,17 @@
 {
-  "name": "svelte-pwa-template",
-  "version": "1.0.4",
+  "name": "sveltekitnetlifyforms",
+  "version": "0.0.1",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "start": "sirv public",
-    "test": "echo test"
+    "dev": "svelte-kit dev",
+    "build": "svelte-kit build",
+    "preview": "svelte-kit preview"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "11.0.2",
-    "@rollup/plugin-node-resolve": "^7.0.0",
-    "rollup": "^1.20.0",
-    "rollup-plugin-livereload": "^1.0.0",
-    "rollup-plugin-svelte": "^5.0.3",
-    "rollup-plugin-terser": "^7.0.1",
-    "svelte": "^3.0.0"
+    "@sveltejs/kit": "next",
+    "svelte": "^3.42.6"
   },
+  "type": "module",
   "dependencies": {
-    "@sveltejs/adapter-netlify": "^1.0.0-next.0",
-    "sirv-cli": "^0.4.4"
+    "@sveltejs/adapter-netlify": "^1.0.0-next.32"
   }
 }
