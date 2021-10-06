@@ -38,7 +38,7 @@ method=POST enctype="application/x-www-form-urlencoded"
 class="f5 f4-ns highlight system cf no-clutter"
 name="Contact"
 netlify-honeypot="gotcha"
-data-netlify="true">
+netlify>
 <!-- action="/done.html" // form data-netlify="true" -->
 <!-- For each detected tag, it sets up a dedicated "form" which is pretty much an append-only schemaless document store of all submissions.
 		- from: swyx.io/sveltekit-netlify-forms/
