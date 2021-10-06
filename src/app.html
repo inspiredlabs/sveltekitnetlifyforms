@@ -5,8 +5,33 @@
 		<link rel="icon" href="/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%svelte.head%
+
+		<style>
+			/* NOT Inclusively Hidden: css-tricks.com/inclusively-hidden/ */
+			.visually-hidden {
+				clip: rect(0 0 0 0);
+				clip-path: inset(50%);
+				height: 1px;
+				overflow: hidden;
+				position: absolute;
+				white-space: nowrap;
+				width: 1px;
+			}
+		</style>
+
 	</head>
 	<body>
 		<div id="svelte">%svelte.body%</div>
+
+		<form
+			class="visually-hidden"
+			name="Contact"
+			netlify-honeypot="gotcha"
+			data-netlify="true">
+			<input name="gotcha" hidden />
+			<input type="email" name="email" />
+			<textarea name="message"></textarea>
+		</form>
+
 	</body>
 </html>
