@@ -43,6 +43,11 @@ netlify>
 <!-- For each detected tag, it sets up a dedicated "form" which is pretty much an append-only schemaless document store of all submissions.
 		- from: swyx.io/sveltekit-netlify-forms/
 -->
+
+
+<input type="hidden" name="form-name" value="Contact" />
+<!-- - from: https://docs.netlify.com/forms/setup/#html-forms -->
+
 	<input name="subject" type="hidden" value="InstantWebapp inquiry" />
 	<input name="gotcha" class="visually-hidden" />
 	<div class=mb4>
