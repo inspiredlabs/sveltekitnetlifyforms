@@ -43,10 +43,10 @@ data-netlify="true">
 	<input name="gotcha" class="visually-hidden" />
 	<div class=mb4>
 		<label for=email class="f6 f5-ns ttu tracked-mega pl3">Address</label>
-		<!-- simple client-side html form validation using email pattern: codepen.io/olka/pen/ejpKL -->
+		<!-- simple client-side html form validation using email pattern: stackoverflow.com/questions/19605773/html5-email-validation/57993606#57993606-->
 		<input type=email name=email id=email class=" input-reset br0 bn mt3 pa3 w-100 bg-white-80" placeholder="your@email.com"
-		pattern="^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$"
-		required>
+		pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+    required>
 
 	</div>
 
