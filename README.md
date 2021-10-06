@@ -6,7 +6,7 @@ from: https://github.com/sw-yx/sveltekitnetlifyforms
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/cbd22974-28f2-4eea-a35c-0db3fb0095c9/deploy-status)](https://app.netlify.com/sites/agitated-hopper-c5829f/deploys)
 
-# Svelte PWA
+# Svelte PWA 🙂
 
 This is a Progressive Web App (PWA) template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/tretapey/svelte-pwa.
 
