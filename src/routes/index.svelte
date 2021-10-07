@@ -39,7 +39,6 @@ async function handleSubmit(event) {
 	console.log(event);
 	console.log(event.target);
 	console.log(event.target.email.value);
-	console.log(event.target.password.value);
 
 	if (event) {
 		const serialize = function (form) {
