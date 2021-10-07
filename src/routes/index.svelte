@@ -29,16 +29,14 @@
 
 let email;
 let message;
-
-
 let error_boolean = false;
 let success_boolean = false;
 
 async function handleSubmit(event) {
 
-	console.log(event);
-	console.log(event.target);
-	console.log(event.target.email.value);
+	// console.log(event);
+	// console.log(event.target);
+	// console.log(event.target.email.value);
 
 	if (event) {
 		const serialize = function (form) {
@@ -89,7 +87,8 @@ async function handleSubmit(event) {
 
 			fetch('/', options)
 				.then(function (response) {
-					// note: do something `window.location.assign(theForm.action);`
+					window.location.assign(theForm.action);
+					// note: do something:
 					success_boolean = true;
 				})
 				.catch(function (error) {
