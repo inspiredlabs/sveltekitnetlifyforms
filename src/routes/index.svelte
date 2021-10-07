@@ -29,7 +29,6 @@
 
 let email;
 let message;
-let success_boolean = false;
 
 const handleSubmit = () => {
 
@@ -84,8 +83,7 @@ const handleSubmit = () => {
 
 			fetch('/', options)
 				.then(function (response) {
-					// note: do something:
-					success_boolean = true;
+					window.location.assign(theForm.action);
 				})
 				.catch(function (error) {
 					console.log(error);
@@ -93,8 +91,6 @@ const handleSubmit = () => {
 		});
 	}
 }
-
-
 
 </script>
 
@@ -129,12 +125,7 @@ netlify>
 		<!-- simple client-side html form validation using email pattern: stackoverflow.com/questions/19605773/html5-email-validation/57993606#57993606
 		unable to pass: `pattern={pattern}`
 		-->
-		<input
-		bind:value={email}
-		type="email"
-		name="email"
-		class=" input-reset br0 bn mt3 pa3 w-100 bg-white-80" placeholder="your@email.com"
-		required>
+		<input bind:value={email} type="email" name="email" class=" input-reset br0 bn mt3 pa3 w-100 bg-white-80" placeholder="your@email.com" required>
 
 	</div>
 
@@ -144,14 +135,11 @@ netlify>
 		<!-- f5 f5-ns input-reset -->
 	</div>
 
-	{#if !success_boolean}
 	<div class="fr cb cf mb3 mb6-ns mb3-m mb3-l bg-black ma0">
 		<input
 		class="transition input-reset pointer br0 f6 f5-ns b ph5 pv3 ba bw2-ns b--black white bg-cobalt-80 ttu tracked-mega hover-bg-near-black w-100 db b system"
 		type="submit" value="Send">
 	</div>
-	{/if}
-	{#if success_boolean}✅{/if}
 </form>
 
 
