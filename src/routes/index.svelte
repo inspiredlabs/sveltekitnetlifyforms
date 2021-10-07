@@ -30,11 +30,18 @@
 let email;
 let message;
 
-const handleSubmit = () => {
 
-	let netlifyForm = document.getElementById('netlify-form');
+let error_boolean = false;
+let success_boolean = false;
 
-	if (netlifyForm) {
+async function handleSubmit(event) {
+
+	console.log(event);
+	console.log(event.target);
+	console.log(event.target.email.value);
+	console.log(event.target.password.value);
+
+	if (event) {
 		const serialize = function (form) {
 			var field,
 				l,
@@ -70,7 +77,7 @@ const handleSubmit = () => {
 			}
 			return s.join('&').replace(/%20/g, '+');
 		};
-		netlifyForm.addEventListener('submit', (e) => {
+		event.addEventListener('submit', (e) => {
 			e.preventDefault();
 
 			const theForm = e.currentTarget;
@@ -83,20 +90,50 @@ const handleSubmit = () => {
 
 			fetch('/', options)
 				.then(function (response) {
-					window.location.assign(theForm.action);
+					// note: do something `window.location.assign(theForm.action);`
+					success_boolean = true;
 				})
 				.catch(function (error) {
 					console.log(error);
 				});
 		});
 	}
+
 }
 
+function validateMessage(event) {
+	let textbox = event.target;
+	error_boolean = false;
+	if (textbox.value === '') {
+		textbox.setCustomValidity('👩‍💻 Please put some detail in your message');
+	} else if (textbox.validity.typeMismatch){
+		error_boolean = true;
+		textbox.setCustomValidity('👩‍💻 Please put some detail in your message');
+	} else {
+		textbox.setCustomValidity('');
+	}
+	return true;
+}
+
+function validateEmail(event) {
+	let textbox = event.target;
+	error_boolean = false;
+	if (textbox.value === '') {
+		textbox.setCustomValidity('👩‍💻 Please enter your email');
+	} else if (textbox.validity.typeMismatch){
+		error_boolean = true;
+		textbox.setCustomValidity('👩‍💻 Please enter your email');
+	} else {
+		textbox.setCustomValidity('');
+	}
+	return true;
+}
 </script>
 
 <h1>SvelteKit + Netlify Forms demo
 <small>
-	- From <a href="https://github.com/sw-yx/sveltekitnetlifyforms">https://github.com/sw-yx/sveltekitnetlifyforms</a>
+	- From <a href="https://github.com/sw-yx/sveltekitevents">
+		https://github.com/sw-yx/sveltekitevents</a>
 </small>
 </h1>
 <!-- "/src/routes/test-form.svelte" -->
@@ -114,6 +151,9 @@ netlify>
 		- from: swyx.io/sveltekit-netlify-forms/
 -->
 
+<style>
+.err { color: darkred }
+</style>
 
 <input type="hidden" name="form-name" value="Contact" />
 <!-- - from: https://docs.netlify.com/forms/setup/#html-forms -->
@@ -121,25 +161,41 @@ netlify>
 	<input name="subject" type="hidden" value="InstantWebapp inquiry" />
 	<input name="gotcha" class="visually-hidden" />
 	<div class="mb4">
-		<label for="email" class="f6 f5-ns ttu tracked-mega pl3">Address</label>
+		<label for="email" class="{error_boolean = 'err' ? 'err' : ''} f6 f5-ns ttu tracked-mega pl3">Address</label>
 		<!-- simple client-side html form validation using email pattern: stackoverflow.com/questions/19605773/html5-email-validation/57993606#57993606
 		unable to pass: `pattern={pattern}`
 		-->
-		<input bind:value={email} type="email" name="email" class=" input-reset br0 bn mt3 pa3 w-100 bg-white-80" placeholder="your@email.com" required>
+		<input
+		bind:value={email}
+		on:invalid={validateEmail}
+		on:changed={validateEmail}
+		on:input={validateEmail}
+		type="email"
+		name="email"
+		class=" input-reset br0 bn mt3 pa3 w-100 bg-white-80" placeholder="your@email.com"
+		required>
 
 	</div>
 
 	<div class="mb4">
-		<label for="message" class="f6 f5-ns ttu tracked-mega pl3">Message</label>
-		<textarea bind:value={message} class="mw-100 input-reset br0 bn mt3 pa3 w-100 bg-white-80" id="message" name="message" rows="4" placeholder="Your name or business details&hellip;" style="min-width:100%;" required></textarea>
+		<label for="message" class="{error_boolean = 'err' ? 'err' : ''} f6 f5-ns ttu tracked-mega pl3">Message</label>
+		<textarea
+		bind:value={message}
+		on:invalid={validateMessage}
+		on:changed={validateMessage}
+		on:input={validateMessage}
+		class="mw-100 input-reset br0 bn mt3 pa3 w-100 bg-white-80" id="message" name="message" rows="4" placeholder="Your name or business details&hellip;" style="min-width:100%;" required></textarea>
 		<!-- f5 f5-ns input-reset -->
 	</div>
 
+	{#if !success_boolean}
 	<div class="fr cb cf mb3 mb6-ns mb3-m mb3-l bg-black ma0">
 		<input
 		class="transition input-reset pointer br0 f6 f5-ns b ph5 pv3 ba bw2-ns b--black white bg-cobalt-80 ttu tracked-mega hover-bg-near-black w-100 db b system"
 		type="submit" value="Send">
 	</div>
+	{/if}
+	{#if success_boolean}✅{/if}
 </form>
 
 
