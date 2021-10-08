@@ -9,13 +9,14 @@
 <script>
 //let pattern = "^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
 
+// Note: JS form submission: nielsvandermolen.com/signup-form-html5-validation-svelte/
 let email;
 let message;
 let success_boolean = false;
 
-const handleSubmit = () => {
+const handleSubmit = (event) => {
 
-	let netlifyForm = document.getElementById('netlify-form');
+	let netlifyForm = event.target; //document.getElementById('netlify-form')
 
 	if (netlifyForm) {
 		const serialize = function (form) {

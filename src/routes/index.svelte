@@ -37,12 +37,18 @@ let error = "";
 
 const submitForm = async() => {
 	try {
-		const submit = await fetch("/api/submit", {
-		method: "POST",
-		body: JSON.stringify({
-			email,
-			message
-		})
+
+		const options = {
+			method: "POST",
+			//headers: { "Content-Type": "application/x-www-form-urlencoded" },
+			body: JSON.stringify({
+				email,
+				message
+			})
+		};
+
+		const submit = await fetch("/", options)
+
 	});
 
 	const data = await submit.json();
