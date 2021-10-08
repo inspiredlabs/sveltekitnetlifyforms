@@ -24,15 +24,14 @@
 	-->
 </svelte:head>
 
-<script>
+<!--script>
 //let pattern = "^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
-
+let form = 'Contact';
 let email;
 let message;
 
 let submission = "";
 let error = "";
-
 
 const submitForm = async() => {
 	try {
@@ -50,6 +49,45 @@ const submitForm = async() => {
 }
 
 //on:submit|preventDefault={submitForm}
+</script-->
+
+<script>
+import { onMount } from 'svelte';
+let root;
+let form = 'Contact';
+let email;
+let message;
+
+// `getElementsByTagName(selector)` or `getElementsByClassName(selector)`  returns a HTMLCollection of elements only. It is considered "live", meaning... ?
+// `querySelectorAll(selector)` returns a HTMLCollection elements only. It returns a "static" list of CSS selectors.
+
+// onMount(() => {
+// 		const netlifyForm = root.querySelectorAll(`${form.toLowercase}`);
+// 		console.log(netlifyForm) // returns `NodeList []`
+// 		netlifyForm.style.backgroundColor = "red";
+// });
+
+function formAction(node) {
+	node.submit = () => alert('submit');
+
+	node.addEventListener("submit", event => {
+		event.preventDefault();
+
+		const formData = new FormData(node);
+		fetch(node.getAttribute("action"), {
+			method: "POST",
+			body: new URLSearchParams(formData).toString()
+		})
+		.then(response => {
+			if (response) {
+				alert('Thanks!')
+			}
+		})
+	})
+
+}
+
+
 </script>
 
 <h1>SvelteKit + Netlify Forms demo
@@ -58,17 +96,26 @@ const submitForm = async() => {
 </small>
 </h1>
 
+
+
+
 <!-- note: <pre>{JSON.stringify(submission)}</pre> -->
 
-{#if !submission && !error}
-	<form
-	on:submit|preventDefault={submitForm}
-	name="Contact"
+<!-- {#if !submission && !error} -->
+<!-- on:submit|preventDefault={submitForm} -->
+<!--
+	id={SEE BELOW}
+	 -->
+<form
+	use:formAction
+	name={form}
+	id="#{form.toLowerCase()}"
+	action="#{form.toLowerCase()}"
 	netlify-honeypot="gotcha"
 	netlify
 	class="f5 f4-ns highlight system cf no-clutter">
 
-	<input type="hidden" name="form-name" value="Contact" />
+	<input type="hidden" name="form-name" value={form} />
 	<!-- - from: https://docs.netlify.com/forms/setup/#html-forms -->
 
 		<!-- `name="subject"` only appreas on: app.netlify.com/sites/instantwebapp/settings/forms#form-notifications -->
@@ -109,14 +156,13 @@ const submitForm = async() => {
 			type="submit" value="Send">
 		</div>
 	</form>
-{:else if message }
+<!-- {:else if message }
 	<pre>Thanks for your message! Sam will reply to: <span style="font-weight:bold">{email}</span>!</pre>
 {:else}
 	<pre>
 		{error}
 	</pre>
-	<!-- add human readable   -->
-{/if}
+{/if} -->
 
 
 <style>
