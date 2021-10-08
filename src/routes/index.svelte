@@ -68,23 +68,65 @@ let message;
 // });
 
 function formAction(node) {
-	node.submit = () => alert('submit');
 
-	node.addEventListener("submit", event => {
-		event.preventDefault();
+	if (node) {
+		const serialize = function (form) {
+			var field,
+				l,
+				s = [];
 
-		const formData = new FormData(node);
-		fetch(node.getAttribute("action"), {
-			method: "POST",
-			headers: { "Content-Type": "application/x-www-form-urlencoded" },
-			body: new URLSearchParams(formData).toString()
-		})
-		.then(response => {
-			if (response) {
-				alert('Thanks!')
+			if (typeof form == 'object' && form.nodeName == 'FORM') {
+				var len = form.elements.length;
+
+				for (var i = 0; i < len; i++) {
+					field = form.elements[i];
+					if (
+						field.name &&
+						!field.disabled &&
+						field.type != 'button' &&
+						field.type != 'file' &&
+						field.type != 'hidden' &&
+						field.type != 'reset' &&
+						field.type != 'submit'
+					) {
+						if (field.type == 'select-multiple') {
+							l = form.elements[i].options.length;
+
+							for (var j = 0; j < l; j++) {
+								if (field.options[j].selected) {
+									s[s.length] = encodeURIComponent(field.name) + '=' + encodeURIComponent(field.options[j].value);
+								}
+							}
+						} else if ((field.type != 'checkbox' && field.type != 'radio') || field.checked) {
+							s[s.length] = encodeURIComponent(field.name) + '=' + encodeURIComponent(field.value);
+						}
+					}
+				}
 			}
-		})
-	})
+			return s.join('&').replace(/%20/g, '+');
+		};
+		node.addEventListener('submit', (e) => {
+			e.preventDefault();
+
+			const theForm = e.currentTarget;
+			const formData = 'form-name=' + theForm.name + '&' + serialize(theForm);
+			const options = {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				body: formData
+			};
+
+			fetch('/', options)
+				.then(function (response) {
+					// note: do something:
+					window.location.assign(theForm.action);
+					//success_boolean = true;
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+		});
+	}
 
 }
 
@@ -93,7 +135,7 @@ function formAction(node) {
 
 <h1>SvelteKit + Netlify Forms demo
 <small>
-	- From <a href="https://github.com/sw-yx/sveltekitnetlifyforms">https://github.com/sw-yx/sveltekitnetlifyforms</a>
+	- From <a href="https://github.com/sw-yx/sveltekitnodes">https://github.com/sw-yx/sveltekitnodes</a>
 </small>
 </h1>
 
