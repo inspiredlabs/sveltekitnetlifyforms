@@ -108,8 +108,8 @@ function formAction(node) {
 		node.addEventListener('submit', (e) => {
 			e.preventDefault();
 
-			const theForm = e.currentTarget;
-			const formData = 'form-name=' + theForm.name + '&' + serialize(theForm);
+			const node = e.currentTarget;
+			const formData = 'form-name=' + node.name + '&' + serialize(node);
 			const options = {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -119,7 +119,7 @@ function formAction(node) {
 			fetch('/', options)
 				.then(function (response) {
 					// note: do something:
-					window.location.assign(theForm.action);
+					window.location.assign(node.action);
 					//success_boolean = true;
 				})
 				.catch(function (error) {
