@@ -104,13 +104,13 @@ function formAction(node) {
 <!-- {#if !submission && !error} -->
 <!-- on:submit|preventDefault={submitForm} -->
 <!--
-	id={SEE BELOW}
+	id="{form.toLowerCase()}"
+	action="#{form.toLowerCase()}"
 	 -->
 <form
 	use:formAction
 	name={form}
-	id="#{form.toLowerCase()}"
-	action="#{form.toLowerCase()}"
+	action="/"
 	netlify-honeypot="gotcha"
 	netlify
 	class="f5 f4-ns highlight system cf no-clutter">
