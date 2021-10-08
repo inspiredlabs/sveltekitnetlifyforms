@@ -27,7 +27,6 @@
 <script>
 //let pattern = "^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
 
-// Note: JS form submission: https://www.youtube.com/watch?v=jpKbyiQsj3k
 let email;
 let message;
 
@@ -37,18 +36,12 @@ let error = "";
 
 const submitForm = async() => {
 	try {
-
-		const options = {
-			method: "POST",
-			//headers: { "Content-Type": "application/x-www-form-urlencoded" },
-			body: JSON.stringify({
-				email,
-				message
-			})
-		};
-
-		const submit = await fetch("/", options)
-
+		const submit = await fetch("/", {
+		method: "POST",
+		body: JSON.stringify({
+			email,
+			message
+		})
 	});
 
 	const data = await submit.json();
@@ -62,6 +55,7 @@ const submitForm = async() => {
 	}
 }
 
+//on:submit|preventDefault={submitForm}
 </script>
 
 <h1>SvelteKit + Netlify Forms demo
@@ -127,7 +121,7 @@ const submitForm = async() => {
 	<pre>
 		{error}
 	</pre>
-	<!-- add human readable: `em@il.com` -->
+	<!-- add human readable:  -->
 {/if}
 
 
