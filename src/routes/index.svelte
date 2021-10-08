@@ -76,6 +76,7 @@ function formAction(node) {
 		const formData = new FormData(node);
 		fetch(node.getAttribute("action"), {
 			method: "POST",
+			headers: { "Content-Type": "application/x-www-form-urlencoded" },
 			body: new URLSearchParams(formData).toString()
 		})
 		.then(response => {
