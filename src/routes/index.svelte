@@ -36,13 +36,7 @@ let error = "";
 
 const submitForm = async() => {
 	try {
-		const submit = await fetch("/", {
-		method: "POST",
-		body: JSON.stringify({
-			email,
-			message
-		})
-	});
+		const submit = await fetch("/");
 
 	const data = await submit.json();
 
@@ -121,7 +115,7 @@ const submitForm = async() => {
 	<pre>
 		{error}
 	</pre>
-	<!-- add human readable:  -->
+	<!-- add human readable   -->
 {/if}
 
 
