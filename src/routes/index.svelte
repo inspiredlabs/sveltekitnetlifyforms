@@ -6,29 +6,34 @@
 	let form = 'Contact';
   let isSubmitting = false;
 
-  const handleSubmit = (event) => {
+	function formAction(node) {
 
-		let contactForm = document.getElementById(form.toLowerCase());
-    let formData = new FormData(contactForm);
+		node.addEventListener('submit', (event) => {
 
-    isSubmitting = true;
+			let contactForm = document.getElementById(form.toLowerCase());
+			let formData = new FormData(contactForm);
 
-    return fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
-    })
-      .then(() => {
-				// note: do something:
-				console.log("It works!");
-        isSubmitting = false;
-        contactForm.reset();
-      })
-      .catch((error) => {
-        console.log(error);
-        isSubmitting = false;
-      });
-  };
+			isSubmitting = true;
+
+			return fetch("/", {
+				method: "POST",
+				headers: { "Content-Type": "application/x-www-form-urlencoded" },
+				body: new URLSearchParams(formData).toString(),
+			})
+				.then(() => {
+					// note: do something:
+					console.log("It works!");
+					isSubmitting = false;
+					contactForm.reset();
+				})
+				.catch((error) => {
+					console.log(error);
+					isSubmitting = false;
+				});
+			});
+
+	};
+
 </script>
 
 <h1>SvelteKit + Netlify Forms demo
@@ -38,9 +43,9 @@
 </h1>
 
 <form
+use:formAction|preventDefault
 id="{form.toLowerCase()}"
 name={form}
-on:submit|preventDefault={handleSubmit}
 netlify
 netlify-honeypot="gotcha"
 class="f5 f4-ns highlight system cf no-clutter">
