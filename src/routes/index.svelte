@@ -7,7 +7,8 @@
   let isSubmitting = false;
 
 	function formAction(node) {
-		let contactForm = document.querySelectorAll("form")[0];
+		let contactForm = document.getElementById(`${form.toLowerCase()}`);
+		//let contactForm = document.querySelectorAll("form")[0];
 		console.log(contactForm);
     let formData = new FormData(contactForm);
 
@@ -42,6 +43,7 @@
 
 <form
 use:formAction|preventDefault
+id={form.toLowerCase()}
 name={form}
 netlify
 netlify-honeypot="gotcha"
