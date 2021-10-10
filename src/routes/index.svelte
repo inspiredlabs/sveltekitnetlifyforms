@@ -7,14 +7,17 @@
   let isSubmitting = false;
 
 	function formAction(node) {
-		let contactForm = document.getElementById(`${form.toLowerCase()}`);
-		//let contactForm = document.querySelectorAll("form")[0];
-		console.log(contactForm);
+		node.addEventListener('submit', (event) => {
+			handleSubmit();
+		});
+	};
+
+  const handleSubmit = (event) => {
+
+		let contactForm = document.getElementById(form.toLowerCase());
     let formData = new FormData(contactForm);
 
-		node.addEventListener("submit", (event) => {
-
-		isSubmitting = true;
+    isSubmitting = true;
 
     return fetch("/", {
       method: "POST",
@@ -31,8 +34,7 @@
         console.log(error);
         isSubmitting = false;
       });
-		});
-	};
+  };
 </script>
 
 <h1>SvelteKit + Netlify Forms demo
@@ -43,7 +45,7 @@
 
 <form
 use:formAction|preventDefault
-id={form.toLowerCase()}
+id="{form.toLowerCase()}"
 name={form}
 netlify
 netlify-honeypot="gotcha"
@@ -54,6 +56,8 @@ class="f5 f4-ns highlight system cf no-clutter">
   <input type="text" name="gotcha" class="visually-hidden" />
 	<!-- `name="subject"` only appreas on: app.netlify.com/sites/instantwebapp/settings/forms#form-notifications -->
 	<input name="subject" type="hidden" value="{form} inquiry" />
+
+
 
 	<div class="mb4">
 		<label for="email" class="f6 f5-ns ttu tracked-mega pl3">Address</label>
