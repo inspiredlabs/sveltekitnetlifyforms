@@ -5,19 +5,12 @@
 <script>
 	let form = 'Contact';
   let isSubmitting = false;
+	let contactForm = node.name.toLowerCase();
+	let formData = new FormData(contactForm);
 
 	function formAction(node) {
 		node.addEventListener('submit', (event) => {
-			handleSubmit();
-		});
-	};
-
-  const handleSubmit = (event) => {
-
-		let contactForm = document.getElementById(form.toLowerCase());
-    let formData = new FormData(contactForm);
-
-    isSubmitting = true;
+			isSubmitting = true;
 
     return fetch("/", {
       method: "POST",
@@ -34,7 +27,8 @@
         console.log(error);
         isSubmitting = false;
       });
-  };
+		});
+	};
 </script>
 
 <h1>SvelteKit + Netlify Forms demo
