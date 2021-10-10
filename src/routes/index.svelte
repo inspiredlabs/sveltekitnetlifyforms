@@ -6,15 +6,9 @@
 	let form = 'Contact';
   let isSubmitting = false;
 
-	function formAction(node) {
-		node.addEventListener('submit', (event) => {
-			handleSubmit();
-		});
-	};
-
   const handleSubmit = (event) => {
 
-		let contactForm = document.getElementById(form.toLowerCase());
+		let contactForm = document.querySelectorAll("form")[0];
     let formData = new FormData(contactForm);
 
     isSubmitting = true;
@@ -44,8 +38,7 @@
 </h1>
 
 <form
-use:formAction|preventDefault
-id="{form.toLowerCase()}"
+on:submit|preventDefault={handleSubmit}
 name={form}
 netlify
 netlify-honeypot="gotcha"
