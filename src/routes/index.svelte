@@ -7,7 +7,7 @@
   let isSubmitting = false;
 
 	function formAction(node) {
-		let contactForm = document.getElementsByTagName("form")[0];
+		let contactForm = document.querySelectorAll("form")[0];
 		console.log(contactForm);
     let formData = new FormData(contactForm);
 
