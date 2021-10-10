@@ -7,8 +7,8 @@
   let isSubmitting = false;
 
 	function formAction(node) {
-		let contactForm = node.name;
-    let formData = new FormData(node);
+		let contactForm = document.forms[`${form}`];
+    let formData = new FormData(contactForm);
 
 		node.addEventListener('submit', (event) => {
 
