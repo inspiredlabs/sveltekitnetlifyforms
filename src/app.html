@@ -6,6 +6,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%svelte.head%
 
+		<link rel="stylesheet" type="text/css" href="https://instantwebapp.com/css/tachyon.shower.css">
+
 		<style>
 			/* NOT Inclusively Hidden: css-tricks.com/inclusively-hidden/ */
 			.visually-hidden {
@@ -20,7 +22,18 @@
 		</style>
 
 	</head>
-	<body>
+	<body class="pa0 ma0 system bg-near-white">
 		<div id="svelte">%svelte.body%</div>
+
+		<!-- <form
+			class="visually-hidden"
+			name="Contact"
+			netlify-honeypot="gotcha"
+			netlify>
+			<input name="gotcha" hidden />
+			<input type="email" name="email" />
+			<textarea name="message"></textarea>
+		</form> -->
+
 	</body>
 </html>

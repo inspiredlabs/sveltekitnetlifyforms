@@ -29,10 +29,10 @@
 				// note: do something:
 				console.log("Form submitted!");
 				submitted = true;
-				// isSubmitting = false;
 			})
 			.finally(() => {
 				// note: do something:
+				isSubmitting = false;
 				form.reset();
 				console.log("It works!");
 			})
@@ -71,7 +71,7 @@ class="f5 f4-ns highlight system cf no-clutter">
 		name="email"
 		placeholder="your@email.com"
 		required
-		class=" input-reset br0 bn mt3 pa3 w-100 bg-white-80">
+		class=" input-reset br0 bw1 b--transparent mt3 pa3 w-100 bg-white-80">
 
 	</div>
 
@@ -83,7 +83,7 @@ class="f5 f4-ns highlight system cf no-clutter">
 		rows="4"
 		placeholder="Your name or business details&hellip;"
 		required
-		class="min-w-100 mw-100 input-reset br0 bn mt3 pa3 w-100 bg-white-80"></textarea>
+		class="min-w-100 mw-100 input-reset br0 bw1 b--transparent mt3 pa3 w-100 bg-white-80"></textarea>
 		<!-- f5 f5-ns input-reset -->
 	</div>
 
@@ -92,16 +92,20 @@ class="f5 f4-ns highlight system cf no-clutter">
 	{:else}
 	<div class="fr cb cf mb3 mb6-ns mb3-m mb3-l bg-black ma0">
 		<input
-		class="transition input-reset pointer br0 f6 f5-ns b ph5 pv3 ba bw2-ns b--black white bg-cobalt-80 ttu tracked-mega hover-bg-near-black w-100 db b system"
+		class="transition input-reset pointer br0 f6 f5-ns b ph5 pv3 ba bw2-ns b--black white ttu tracked-mega hover-bg-near-black w-100 db b system"
 		type="submit" value="Send">
 	</div>
 	{/if}
 {:else}
-<pre>Good Job, your form has been sent!</pre>
+<pre>Good one! Thank you, we'll reply to your message soon.</pre>
 {/if}
 </form>
 
 <style>
+	*:focus, *:active {
+		border-color:black;
+		transition: border-color 333ms ease-out;
+	}
 	/* NOT Inclusively Hidden: css-tricks.com/inclusively-hidden/ */
 	.visually-hidden {
 		clip: rect(0 0 0 0);
