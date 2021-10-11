@@ -3,32 +3,38 @@
 </script>
 
 <script>
-	let form = 'Contact';
+	let form;
+	let name = 'Contact';
   let isSubmitting = false;
+	//let id = `${String.fromCharCode(Math.floor((Math.random() * 26))+64).toLowerCase()}${String.fromCharCode(Math.floor((Math.random() * 26))+64).toLowerCase()}` //console.log(`${String.fromCharCode(num0+64).toLowerCase()}${String.fromCharCode(num1+64).toLowerCase()}`) // -from: stackoverflow.com/questions/36129721/convert-number-to-alphabet-letter
 
-  const handleSubmit = (event) => {
+	//console.log(id)
+	// let id = Math.floor((Math.random() * 26) + 9).toString(36);// from: stackoverflow.com/a/36129812
 
-		let contactForm = document.querySelectorAll("form")[0];
-    let formData = new FormData(contactForm);
 
-    isSubmitting = true;
+	const handleSubmit = (event) => {
 
-    return fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
-    })
-      .then(() => {
+		let contactForm = form; // document.getElementById(`${id}`) // returns a single element. As opposed to: `document.querySelectorAll("form")[0]`;
+		let formData = new FormData(contactForm);
+
+		isSubmitting = true;
+
+		return fetch("/", {
+			method: "POST",
+			headers: { "Content-Type": "application/x-www-form-urlencoded" },
+			body: new URLSearchParams(formData).toString(),
+		})
+			.then(() => {
 				// note: do something:
 				console.log("It works!");
-        isSubmitting = false;
-        contactForm.reset();
-      })
-      .catch((error) => {
-        console.log(error);
-        isSubmitting = false;
-      });
-  };
+				isSubmitting = false;
+				contactForm.reset();
+			})
+			.catch((error) => {
+				console.log(error);
+				isSubmitting = false;
+			});
+		};
 </script>
 
 <h1>SvelteKit + Netlify Forms demo
@@ -39,18 +45,17 @@
 
 <form
 on:submit|preventDefault={handleSubmit}
-name={form}
+bind:this={form}
+name={name}
 netlify
 netlify-honeypot="gotcha"
 class="f5 f4-ns highlight system cf no-clutter">
 
 	<!-- - from: https://docs.netlify.com/forms/setup/#html-forms -->
-	<input type="hidden" name="form-name" value={form} />
+	<input type="hidden" name="form-name" value={name} />
   <input type="text" name="gotcha" class="visually-hidden" />
 	<!-- `name="subject"` only appreas on: app.netlify.com/sites/instantwebapp/settings/forms#form-notifications -->
-	<input name="subject" type="hidden" value="{form} inquiry" />
-
-
+	<input name="subject" type="hidden" value="{name} inquiry" />
 
 	<div class="mb4">
 		<label for="email" class="f6 f5-ns ttu tracked-mega pl3">Address</label>
