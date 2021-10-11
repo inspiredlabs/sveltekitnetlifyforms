@@ -29,11 +29,10 @@
 				// note: do something:
 				console.log("Form submitted!");
 				submitted = true;
+				isSubmitting = false;
 			})
 			.finally(() => {
-				// note: do something:
-				isSubmitting = false;
-				form.reset();
+				// note: do something: form.reset();
 				console.log("It works!");
 			})
 			.catch((error) => {
