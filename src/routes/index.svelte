@@ -14,8 +14,8 @@
 
 	const handleSubmit = (event) => {
 
-		let contactForm = form; // document.getElementById(`${id}`) // returns a single element. As opposed to: `document.querySelectorAll("form")[0]`;
-		let formData = new FormData(contactForm);
+		//let form = form; // document.getElementById(`${id}`) // returns a single element. As opposed to: `document.querySelectorAll("form")[0]`;
+		let formData = new FormData(form);
 
 		isSubmitting = true;
 
@@ -28,7 +28,7 @@
 				// note: do something:
 				console.log("It works!");
 				isSubmitting = false;
-				contactForm.reset();
+				form.reset();
 			})
 			.catch((error) => {
 				console.log(error);
