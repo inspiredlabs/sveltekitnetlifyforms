@@ -5,6 +5,7 @@
 <script>
 	let form;
 	let name = 'Contact';
+	let submitted = false;
   let isSubmitting = false;
 	//let id = `${String.fromCharCode(Math.floor((Math.random() * 26))+64).toLowerCase()}${String.fromCharCode(Math.floor((Math.random() * 26))+64).toLowerCase()}` //console.log(`${String.fromCharCode(num0+64).toLowerCase()}${String.fromCharCode(num1+64).toLowerCase()}`) // -from: stackoverflow.com/questions/36129721/convert-number-to-alphabet-letter
 
@@ -26,9 +27,14 @@
 		})
 			.then(() => {
 				// note: do something:
-				console.log("It works!");
-				isSubmitting = false;
+				console.log("Form submitted!");
+				submitted = true;
+				// isSubmitting = false;
+			})
+			.finally(() => {
+				// note: do something:
 				form.reset();
+				console.log("It works!");
 			})
 			.catch((error) => {
 				console.log(error);
@@ -50,7 +56,7 @@ name={name}
 netlify
 netlify-honeypot="gotcha"
 class="f5 f4-ns highlight system cf no-clutter">
-
+{#if !submitted}
 	<!-- - from: https://docs.netlify.com/forms/setup/#html-forms -->
 	<input type="hidden" name="form-name" value={name} />
   <input type="text" name="gotcha" class="visually-hidden" />
@@ -90,6 +96,9 @@ class="f5 f4-ns highlight system cf no-clutter">
 		type="submit" value="Send">
 	</div>
 	{/if}
+{:else}
+<pre>Good Job, your form has been sent!</pre>
+{/if}
 </form>
 
 <style>
