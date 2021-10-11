@@ -87,15 +87,12 @@ class="f5 f4-ns highlight system cf no-clutter">
 		<!-- f5 f5-ns input-reset -->
 	</div>
 
-	{#if isSubmitting}
-	<pre>Submitting</pre>
-	{:else}
 	<div class="fr cb cf mb3 mb6-ns mb3-m mb3-l bg-black ma0">
 		<input
-		class="transition input-reset pointer br0 f6 f5-ns b ph5 pv3 ba bw2-ns b--black white ttu tracked-mega hover-bg-near-black w-100 db b system"
+		class="{ isSubmitting ? "pointer" : "no-select" } transition input-reset br0 f6 f5-ns b ph5 pv3 ba bw2-ns b--black white ttu tracked-mega hover-bg-near-black w-100 db b system"
 		type="submit" value="Send">
 	</div>
-	{/if}
+
 {:else}
 <pre>Good one! Thank you, we'll reply to your message soon.</pre>
 {/if}
